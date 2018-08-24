@@ -9,7 +9,6 @@ package estructuras;
  * @author desandlope0
  */
 public class GestorArregloDinamico {
-    private int tamano;
     private int[] datos;
     
     public void tamanioDinamico (int tamanio){
@@ -19,6 +18,17 @@ public class GestorArregloDinamico {
          datos[indice]=elemento;
      }
      public String visualizar (){
-        return "gg";
+        String salida = "Elementos: \n";
+        int contador=0;
+        for (int x : datos){
+            if (x!=0){
+                salida = salida + contador + ": " + x + "\n";
+                contador++;
+            }
+        }
+        salida = salida + "Cantidad de elementos significativos: " + 
+                contador + "\n" + "Tamanio del arreglo: " + datos.length + "\n";
+        
+        return salida;
      }
 }

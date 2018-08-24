@@ -57,7 +57,7 @@ public class ArregloDinamicoVentana extends javax.swing.JFrame {
         txtResultados.setRows(5);
         scrResultados.setViewportView(txtResultados);
 
-        pnlGestionArregloDinamico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestión del Arreglo", 0, 0, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        pnlGestionArregloDinamico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gestión del Arreglo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         lblTamanioArreglo.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         lblTamanioArreglo.setText("Tamaño Inicial");
@@ -81,6 +81,11 @@ public class ArregloDinamicoVentana extends javax.swing.JFrame {
 
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnAsignar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnAsignar.setText("Asignar");
@@ -98,6 +103,11 @@ public class ArregloDinamicoVentana extends javax.swing.JFrame {
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         txtElemento.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
@@ -200,13 +210,23 @@ public class ArregloDinamicoVentana extends javax.swing.JFrame {
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
         int tamanio = Integer.parseInt(txtTamanio.getText());
         gestor.tamanioDinamico(tamanio);
+        txtResultados.setText(gestor.visualizar());
     }//GEN-LAST:event_btnAsignarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         int elemento = Integer.parseInt(txtElemento.getText());
         int indice = Integer.parseInt(txtIndice.getText());
         gestor.agregar(indice, elemento);
+        txtResultados.setText(gestor.visualizar());
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+       txtResultados.setText(gestor.visualizar());
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        txtResultados.setText(gestor.visualizar());
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
