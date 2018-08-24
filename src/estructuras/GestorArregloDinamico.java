@@ -20,11 +20,13 @@ public class GestorArregloDinamico {
      public String visualizar (){
         String salida = "Elementos: \n";
         int contador=0;
+        int i = 0;
         for (int x : datos){
             if (x!=0){
                 salida = salida + contador + ": " + x + "\n";
                 contador++;
             }
+            i++;
         }
         salida = salida + "Cantidad de elementos significativos: " + 
                 contador + "\n" + "Tamanio del arreglo: " + datos.length + "\n";
