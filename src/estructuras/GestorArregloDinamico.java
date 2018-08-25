@@ -10,7 +10,7 @@ package estructuras;
  */
 public class GestorArregloDinamico {
     private int[] datos;
-    int o;
+    int o5;
     public void tamanioDinamico (int tamanio){
         datos = new int [tamanio];
     }
