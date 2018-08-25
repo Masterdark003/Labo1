@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package estructuras;
+package estructuras; 
 /**
  *
  * @author desandlope0
@@ -11,6 +11,7 @@ package estructuras;
 public class GestorArregloDinamico {
     private int[] datos;
     int o;
+    int ludw;
     public void tamanioDinamico (int tamanio){
         datos = new int [tamanio];
     }
