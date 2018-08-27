@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package vistas;
+
 import estructuras.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author desandlope0
@@ -15,9 +18,10 @@ public class ArregloDinamicoVentana extends javax.swing.JFrame {
      * Creates new form ArregloDinamicoView
      */
     GestorArregloDinamico gestor = new GestorArregloDinamico();
+
     public ArregloDinamicoVentana() {
         initComponents();
-        
+
     }
 
     /**
@@ -208,23 +212,63 @@ public class ArregloDinamicoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTamanioActionPerformed
 
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
-        int tamanio = Integer.parseInt(txtTamanio.getText());
-        gestor.tamanioDinamico(tamanio);
-        txtResultados.setText(gestor.visualizar());
+        try {
+            int tamanio = Integer.parseInt(txtTamanio.getText());
+            gestor.tamanioDinamico(tamanio);
+            txtResultados.setText(gestor.visualizar());
+        } catch (NumberFormatException numberFormatException) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero entero en el tamaño");
+            txtTamanio.setText("");
+        }
     }//GEN-LAST:event_btnAsignarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        int elemento = Integer.parseInt(txtElemento.getText());
-        int indice = Integer.parseInt(txtIndice.getText());
-        gestor.agregar(indice, elemento);
-        txtResultados.setText(gestor.visualizar());
+        try {
+            int elemento = Integer.parseInt(txtElemento.getText());
+            int indice = Integer.parseInt(txtIndice.getText());
+
+            if (indice >= 0) {
+                gestor.agregar(indice, elemento);
+                txtResultados.setText(gestor.visualizar());
+            } else {
+                throw new Exception();
+            }
+        } catch (NumberFormatException numberFormatException) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero entero en el indice y elemento");
+            txtElemento.setText("");
+            txtIndice.setText("");
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null, "El indice debe ser mayor igual que 0 y menor que el tamaño");
+            txtElemento.setText("");
+            txtIndice.setText("");
+
+        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-       txtResultados.setText(gestor.visualizar());
+        try {
+            int indice = Integer.parseInt(txtIndice.getText());
+            if (indice >= 0) {
+                gestor.eliminar(indice);
+                txtResultados.setText(gestor.visualizar());
+            } else {
+                throw new Exception();
+            }
+        } catch (NumberFormatException numberFormatException) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un numero entero en el indice y elemento");
+            txtElemento.setText("");
+            txtIndice.setText("");
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null, "El indice debe ser mayor igual que 0 y menor que el tamaño");
+            txtElemento.setText("");
+            txtIndice.setText("");
+
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        int elemento = Integer.parseInt(txtElemento.getText());
+        gestor.busqueda(elemento);
         txtResultados.setText(gestor.visualizar());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -260,7 +304,7 @@ public class ArregloDinamicoVentana extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ArregloDinamicoVentana().setVisible(true);
-                
+
             }
         });
     }
